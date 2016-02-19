@@ -10,8 +10,25 @@ use App\Http\Controllers\Controller;
 class HomeController extends Controller
 {
     public function index () {
-	    return redirect('hacking');
+	    return view('index');
 	}
+
+    public function about () {
+	    return view('about');
+	}
+
+	    public function services () {
+	    return view('services');
+	}
+
+	    public function portfolio () {
+	    return view('portfolio');
+	}
+
+	    public function contact () {
+	    return view('contact');
+	}
+
 
 	public function hacking() {
 	    return view('welcome');

@@ -31,19 +31,24 @@ Route::group(['middleware' => ['web']], function () {
 
 
 	Route::get('/', ['as' => 'home',  'uses' => 'HomeController@index']);
+	Route::get('about', ['as' => 'about',  'uses' => 'HomeController@about']);
+	Route::get('services', ['as' => 'services',  'uses' => 'HomeController@services']);
+	Route::get('portfolio', ['as' => 'portfolio',  'uses' => 'HomeController@portfolio']);
+	Route::get('contact', ['as' => 'contact',  'uses' => 'HomeController@contact']);
+
 	Route::get('hacking', ['uses' => 'HomeController@hacking']);
 	
 	Route::get('hi', ['as' => 'hi', function () {
-	    return 'hello, world!';
+	    return view('hello');
 	}]);
 	Route::get('hello/{name?}', function ($name = 'it me') {
 	    return 'Hello, '.ucfirst($name);
 	});
 
 	#post CRUD
-	Route::group(['prefix' => 'post'], function(){
-		Route::get('{id}'  , ['as'=>'post', 'uses' => 'PostsController@show']);
-		Route::get('create', ['as'=>'post', 'uses' => 'PostsController@create']);
+	Route::group(['prefix' => 'posts'], function(){
+		Route::get('{id}'  , ['as'=>'posts.show', 'uses' => 'PostsController@show']);
+		Route::get('create', ['as'=>'posts.create', 'uses' => 'PostsController@create']);
 	});
 
 	Route::group(['prefix' => 'admin'], function(){
