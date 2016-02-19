@@ -38,7 +38,9 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title"><B>Laravel 5  Hacking<b></div>
+                <a href="{{ route('hi') }}">go to hi</a>
+                
             </div>
         </div>
     </body>

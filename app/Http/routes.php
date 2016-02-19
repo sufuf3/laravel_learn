@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('news/{a}', function ($a) {
+//    return 'News: '.$a;
+//})->where('a','[0-9]+');
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +27,32 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    Route::pattern('id', '[0-9]+');
+
+
+	Route::get('/', ['as' => 'home',  'uses' => 'HomeController@index']);
+	Route::get('hacking', ['uses' => 'HomeController@hacking']);
+	
+	Route::get('hi', ['as' => 'hi', function () {
+	    return 'hello, world!';
+	}]);
+	Route::get('hello/{name?}', function ($name = 'it me') {
+	    return 'Hello, '.ucfirst($name);
+	});
+
+	#post CRUD
+	Route::group(['prefix' => 'post'], function(){
+		Route::get('{id}'  , ['as'=>'post', 'uses' => 'PostsController@show']);
+		Route::get('create', ['as'=>'post', 'uses' => 'PostsController@create']);
+	});
+
+	Route::group(['prefix' => 'admin'], function(){
+		Route::get('hi', ['as' => 'hi', function () {
+		    return 'hello, world!';
+		}]);
+		Route::get('hacking', function () {
+	    return view('welcome');
+		});
+	});
+
 });
